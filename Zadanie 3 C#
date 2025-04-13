@@ -1,0 +1,37 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Podaj liczbę ocen do wprowadzenia: ");
+        if (int.TryParse(Console.ReadLine(), out int liczbaOcen) && liczbaOcen > 0)
+        {
+            double suma = 0;
+            for (int i = 1; i <= liczbaOcen; i++)
+            {
+                Console.Write($"Podaj ocenę {i}: ");
+                if (double.TryParse(Console.ReadLine(), out double ocena) && ocena >= 1 && ocena <= 6)
+                {
+                    suma += ocena;
+                }
+                else
+                {
+                    Console.WriteLine("Błąd: Podaj ocenę w zakresie 1–6.");
+                    i--;
+                }
+            }
+
+            double srednia = suma / liczbaOcen;
+            Console.WriteLine($"\nŚrednia: {srednia:F2}");
+
+            if (srednia >= 3.0)
+                Console.WriteLine("Uczeń zdał.");
+            else
+                Console.WriteLine("Uczeń nie zdał.");
+        }
+        else
+        {
+            Console.WriteLine("Błąd: Nieprawidłowa liczba ocen.");
+        }
+    }
+}
